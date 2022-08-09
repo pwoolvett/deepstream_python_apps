@@ -209,6 +209,37 @@ namespace pydeepstream {
                      py::return_value_policy::reference,
                      pydsdoc::NvOSD::RectParamsDoc::cast);
 
+        py::class_<NvOSD_MaskParams>(m, "NvOSD_MaskParams",
+                                     pydsdoc::NvOSD::MaskParamsDoc::descr)
+                .def(py::init<>())
+                .def_property_readonly("data", [](NvOSD_MaskParams &self) -> py::array {
+                          auto dtype = py::dtype(
+                                  py::format_descriptor<float>::format());
+                          auto base = py::array(dtype,
+                                                {self.size},
+                                                {sizeof(float)});
+                          return py::array(dtype, {self.size},
+                                           {sizeof(float)},
+                                           self.data, base);
+                              }) //   
+                .def_readwrite("size", &NvOSD_MaskParams::size)
+                .def_readwrite("threshold", &NvOSD_MaskParams::threshold)
+                .def_readwrite("width", &NvOSD_MaskParams::width)
+                .def_readwrite("height", &NvOSD_MaskParams::height)
+                
+                .def("cast",
+                     [](void *data) {
+                         return (NvOSD_MaskParams *) data;
+                     },
+                     py::return_value_policy::reference,
+                     pydsdoc::NvOSD::MaskParamsDoc::cast)
+
+                .def("cast",
+                     [](size_t data) {
+                         return (NvOSD_MaskParams *) data;
+                     },
+                     py::return_value_policy::reference,
+                     pydsdoc::NvOSD::MaskParamsDoc::cast);
 
         py::class_<NvOSD_LineParams>(m, "NvOSD_LineParams",
                                      pydsdoc::NvOSD::LineParamsDoc::descr)

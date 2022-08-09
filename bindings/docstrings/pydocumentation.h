@@ -366,7 +366,19 @@ namespace pydsdoc
 
             constexpr const char* cast=R"pyds(cast given object/data to :class:`NvOSD_RectParams`, call pyds.NvOSD_RectParams.cast(data))pyds";
         }
+        namespace MaskParamsDoc
+        {
+            constexpr const char* descr = R"pyds(
+                Holds the mask parameters for the object.
 
+                :ivar data: *float*, Holds mask data for the object.
+                :ivar size: *int*, Holds mask size.
+                :ivar threshold: *float*, Holds threshold for binarisation.
+                :ivar width: *int*, Holds mask width.
+                :ivar height: *int*, Holds mask height.)pyds";
+                
+            constexpr const char* cast=R"pyds(cast given object/data to :class:`NvOSD_MaskParams`, call pyds.NvOSD_MaskParams.cast(data))pyds";
+        }
         namespace LineParamsDoc
         {
             constexpr const char* descr = R"pyds(
